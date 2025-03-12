@@ -5,6 +5,9 @@ const moment = require("moment");
 
 const trips = require("../trips.json");
 
+const Trajet = require("../models/trajets");
+
+//--------------------------------------------------------------------------------------------------------------
 router.post("/", (req, res) => {
   const { departure, arrival, date } = req.body;
 
@@ -37,5 +40,24 @@ function getTrips(departure, arrival, date, trips) {
   }
   return trajets;
 }
+//--------------------------------------------------------------------------------------------------------------
+
+router.post("/book", (req, res) => {
+  const { trip } = req.body;
+
+  const newTrajet = new Trajet({
+    departure: trip.departure,
+    arrival: trip.arrival,
+    hour: trip.hour,
+    minute: trip.minute,
+    price: trip.price,
+  });
+
+  newTrajet.save();
+
+  res.json({ result: true });
+});
+
+//--------------------------------------------------------------------------------------------------------------
 
 module.exports = router;
