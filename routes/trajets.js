@@ -16,7 +16,7 @@ function getTrips(departure, arrival, date, trips) {
   for (trip of trips) {
     let _timestamp = new Date(trip.date.$date).getTime();
     let tripDate = moment(Number(_timestamp)).format("YYYY-MM-DD");
-    console.log(tripDate);
+    //console.log(tripDate);
     let hour = moment(Number(_timestamp)).format("HH:mm");
 
     if (
@@ -29,7 +29,7 @@ function getTrips(departure, arrival, date, trips) {
         arrival: trip.arrival,
         time: hour,
         date: tripDate,
-        price: trip.price, 
+        price: trip.price,
       };
 
       trajets.push(_trip);
